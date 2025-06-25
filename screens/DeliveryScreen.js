@@ -8,7 +8,11 @@ import { themeColors } from '../theme';
 import * as Icon from "react-native-feather";
 import { emptyBasket } from '../slices/basketSlice';
 
-
+// TODO: 联动历史订单OrderScreen组件，存储当前组件
+// - 如果当前订单是没有取消的，则在OrderScreen中新增一条数据
+// - 如果当前订单是取消的，则在OrderScreen中不新增数据
+//   - 如果已经新增，则删除该行记录
+//   - 如果没有新增，则不做任何操作
 export default function DeliveryScreen() {
     const navigation = useNavigation();
     const resturant = useSelector(selectResturant);
@@ -74,7 +78,7 @@ export default function DeliveryScreen() {
       );
     }
 
-    // 监听手势返回
+    // TODO: 监听手势返回
     React.useEffect(() => {
         const unsubscribe = navigation.addListener('gestureEnd', (e) => {
             handleBack();

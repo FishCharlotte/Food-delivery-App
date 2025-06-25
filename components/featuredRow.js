@@ -29,6 +29,7 @@ export default function FeatureRow({id, title, description, resturants}) {
         </View>
 
         <TouchableOpacity>
+          {/*  TODO: 这个按钮可以做成真实可选择的，现在只是一个空壳，可以数据多的时候就渲染对应类型的数据，用modal或者full screen弹出    */}
           <Text style={{color: themeColors.text}} className="font-semibold">See All</Text>
         </TouchableOpacity>
       </View>
@@ -59,7 +60,7 @@ export default function FeatureRow({id, title, description, resturants}) {
                   dishes={resturant.dishes}
                   lng={114.1736}
                   lat={22.3375}
-
+              {/*    TODO: 考虑一下这里的内容能不能优化一下    */}
               />
             )
           })

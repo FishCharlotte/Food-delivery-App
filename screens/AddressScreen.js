@@ -10,6 +10,8 @@ const defaultAddresses = [
   { id: '3', label: 'Festival Walk' },
 ];
 
+// TODO: 优化地址列表，支持编辑和删除功能
+// TODO: 下单时候支持选择地址
 export default function AddressScreen() {
   const navigation = useNavigation();
   const route = useRoute();

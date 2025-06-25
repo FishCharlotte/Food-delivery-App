@@ -32,7 +32,7 @@ export const categories = [
 
 ]
 
-
+// TODO: 这里的数据有问题，不知道为什么调用到map的时候就不对了，懒得查了，你可以查查看
 export const featured = {
     id: 1,
     title: 'Hot and Spicy',

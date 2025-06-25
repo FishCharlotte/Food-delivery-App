@@ -81,6 +81,7 @@ export default function HomeScreen() {
 
         {/* featured */}
         <View className="mt-5">
+        {/*    TODO: 这里的筛选器是有问题的，你看看怎么新增这个有效筛选器功能，逻辑我都没想好     */}
         {
             featuredCategories?.map(category=>{
                 return (
