@@ -1,6 +1,6 @@
-import { View, Text, StatusBar, TouchableOpacity, Image, Platform, SafeAreaView } from 'react-native'
+import { View, Text, StatusBar, TouchableOpacity, Image, Platform, SafeAreaView, Alert } from 'react-native'
 import React from 'react'
-import { useNavigation } from '@react-navigation/native'
+import { useNavigation, CommonActions } from '@react-navigation/native'
 import { useDispatch, useSelector } from 'react-redux';
 import { selectResturant } from '../slices/resturantSlice';
 import MapView, {Marker} from 'react-native-maps';
@@ -13,17 +13,89 @@ export default function DeliveryScreen() {
     const navigation = useNavigation();
     const resturant = useSelector(selectResturant);
     const dispatch = useDispatch();
-    const handleCancel = ()=>{
-      dispatch(emptyBasket());
-      navigation.navigate('Home')
+    const handleCancel = () => {
+      Alert.alert(
+        'Cancel Order',
+        'Are you sure you want to cancel this order?',
+        [
+          {
+            text: 'No',
+            style: 'cancel',
+          },
+          {
+            text: 'Yes',
+            onPress: () => {
+              dispatch(emptyBasket());
+              navigation.dispatch(
+                CommonActions.reset({
+                  index: 0,
+                  routes: [{ name: 'Home' }],
+                })
+              );
+            },
+            style: 'destructive',
+          },
+        ],
+        { cancelable: true }
+      );
     }
+
+    // 通话按钮点击逻辑
+    const handleCall = () => {
+      Alert.alert(
+        'Contact Rider',
+        'Do you want to call 8888888 to contact the rider?',
+        [
+          {
+            text: 'No',
+            style: 'cancel',
+          },
+          {
+            text: 'Yes',
+            onPress: () => {
+              Alert.alert(
+                'Call Successful',
+                'You have called the rider. Please urge them to deliver your order as soon as possible!'
+              );
+            },
+          },
+        ],
+        { cancelable: true }
+      );
+    }
+
+    // 返回首页的统一逻辑
+    const handleBack = () => {
+      navigation.dispatch(
+        CommonActions.reset({
+          index: 0,
+          routes: [{ name: 'Home' }],
+        })
+      );
+    }
+
+    // 监听手势返回
+    React.useEffect(() => {
+        const unsubscribe = navigation.addListener('gestureEnd', (e) => {
+            handleBack();
+        });
+        return unsubscribe;
+    }, [navigation]);
+
   return (
       <SafeAreaView style={{ flex: 1, backgroundColor: 'white' }} edges={['top']}>
           <StatusBar translucent backgroundColor="transparent" barStyle="dark-content" />
+          {/* 返回按钮 */}
+          <TouchableOpacity
+              onPress={handleBack}
+              style={{ position: 'absolute', top: 70, left: 16, zIndex: 10, backgroundColor: 'white', borderRadius: 20, padding: 6, shadowColor: '#000', shadowOpacity: 0.1, shadowRadius: 4, elevation: 3 }}
+          >
+              <Icon.ArrowLeft strokeWidth={3} stroke={themeColors.bgColor(1)} width={24} height={24} />
+          </TouchableOpacity>
           <MapView
-              region={{ // 使用 region 替代 initialRegion
-                  latitude: resturant.lat,
-                  longitude: resturant.lng,
+              region={{
+                  latitude: 22.3375,
+                  longitude: 114.1736,
                   latitudeDelta: 0.01,
                   longitudeDelta: 0.01,
               }}
@@ -33,8 +105,8 @@ export default function DeliveryScreen() {
           >
             <Marker
                 coordinate={{
-                    latitude: resturant.lat,
-                    longitude: resturant.lng
+                    latitude: 22.3375,
+                    longitude: 114.1736
                 }}
                 title={resturant.title}
                 description={resturant.description}
@@ -61,7 +133,8 @@ export default function DeliveryScreen() {
                       <Text className="text-lg font-bold text-white">EC6001 Group</Text>
                       <Text className="text-white font-semibold">Your Rider</Text>
                   </View>
-                  <TouchableOpacity className="bg-white p-2 rounded-full mr-3">
+                  {/* 通话按钮绑定事件 */}
+                  <TouchableOpacity onPress={handleCall} className="bg-white p-2 rounded-full mr-3">
                       <Icon.Phone fill={themeColors.bgColor(1)} stroke={themeColors.bgColor(1)} strokeWidth="1" />
                   </TouchableOpacity>
                   <TouchableOpacity onPress={handleCancel} className="bg-white p-2 rounded-full">
