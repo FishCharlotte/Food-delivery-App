@@ -11,13 +11,13 @@ export default function FeatureRow({id, title, description, resturants}) {
   // const [resturants, setResturants] = useState([]);
 
   useEffect(() => {
-    // getFeaturedResturantById(id).then(data=>{
-    //   // console.log('got data: ',data);
-    //   setResturants(data?.resturants);
-    // })
+    getFeaturedResturantById(id).then(data=>{
+      // console.log('got data: ',data);
+      setResturants(data?.resturants);
+    })
   }, [id])
   console.log(resturants);
-  
+
   return (
     <View>
       <View className="flex-row justify-between items-center px-4">
@@ -27,13 +27,13 @@ export default function FeatureRow({id, title, description, resturants}) {
             {description}
           </Text>
         </View>
-        
+
         <TouchableOpacity>
           <Text style={{color: themeColors.text}} className="font-semibold">See All</Text>
         </TouchableOpacity>
       </View>
 
-      
+
 
       <ScrollView
         horizontal
@@ -54,18 +54,18 @@ export default function FeatureRow({id, title, description, resturants}) {
                   title={resturant.name}
                   rating={resturant.rating}
                   type={resturant.type?.name}
-                  address="123 main street"
+                  address="又一城 商場"
                   description={resturant.description}
                   dishes={resturant.dishes}
-                  lng={resturant.lng}
-                  lat={resturant.lat}
+                  lng={114.1736}
+                  lat={22.3375}
 
-              />    
+              />
             )
           })
-        }           
+        }
        </ScrollView>
-    
+
     </View>
   )
 }

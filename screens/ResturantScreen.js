@@ -42,8 +42,8 @@ export default function RestaurantScreen() {
             address,
             description,
             dishes,
-            lng,
-            lat
+            lng: 114.1736,
+            lat: 22.3375
         }))
     },[])
   return (
