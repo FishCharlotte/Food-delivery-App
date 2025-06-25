@@ -4,9 +4,7 @@ import { getCategories } from '../api'
 import { urlFor } from '../sanity';
 import { themeColors } from '../theme';
 
-export default function Categories() {
-
-  const [activeCategory, setActiveCategory] = useState(null);
+export default function Categories({ activeCategory, setActiveCategory }) {
   const [categories, setCategories] = useState([])
   useEffect(() => {
     getCategories().then(data=>{
