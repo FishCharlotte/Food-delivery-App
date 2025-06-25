@@ -1,4 +1,4 @@
-import { View, Text, SafeAreaView, StatusBar, Image, TextInput, ScrollView } from 'react-native'
+import { View, Text, SafeAreaView, StatusBar, Image, TextInput, ScrollView, TouchableOpacity, Alert } from 'react-native'
 import React, { useLayoutEffect, useState, useEffect } from 'react'
 import { useNavigation, useFocusEffect } from '@react-navigation/native'
 import Categories from '../components/categories'
@@ -62,7 +62,9 @@ export default function HomeScreen() {
                 </TouchableOpacity>
             </View>
             <View style={{backgroundColor: themeColors.bgColor(1)}} className="p-3 rounded-full ml-2">
-                <Icon.Sliders height={20} width={20} strokeWidth="2.5" stroke="white" />
+                <TouchableOpacity onPress={() => navigation.navigate('Order')}>
+                  <Icon.Clipboard height={20} width={20} strokeWidth="2.5" stroke="white" />
+                </TouchableOpacity>
             </View>
         </View>
 
