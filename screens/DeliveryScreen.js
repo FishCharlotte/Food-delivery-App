@@ -2,7 +2,7 @@ import { View, Text, StatusBar, TouchableOpacity, Image, Platform, SafeAreaView,
 import React from 'react'
 import { useNavigation, CommonActions } from '@react-navigation/native'
 import { useDispatch, useSelector } from 'react-redux';
-import { selectResturant } from '../slices/resturantSlice';
+import { selectResturant } from '../slices/restaurantSlice';
 import MapView, {Marker} from 'react-native-maps';
 import { themeColors } from '../theme';
 import * as Icon from "react-native-feather";

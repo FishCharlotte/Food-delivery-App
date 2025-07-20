@@ -2,7 +2,7 @@ import { View, Text, StatusBar, TouchableOpacity, Image, ScrollView } from 'reac
 import React, { useMemo, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { removeFromBasket, selectBasketItems, selectBasketTotal } from '../slices/basketSlice';
-import { selectResturant } from '../slices/resturantSlice';
+import { selectResturant } from '../slices/restaurantSlice';
 import { useNavigation } from '@react-navigation/native';
 import { urlFor } from '../sanity';
 import * as Icon from "react-native-feather";
