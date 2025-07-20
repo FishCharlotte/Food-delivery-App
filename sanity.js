@@ -5,7 +5,7 @@ const client = createClient ({
     projectId: 'npcegap4',
     dataset: 'production',
     useCdn: false,
-    apiVersion: '2021-10-21',
+    apiVersion: '2025-07-01',
 
 
 })
