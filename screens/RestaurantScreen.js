@@ -5,7 +5,7 @@ import { urlFor } from '../sanity';
 import DishRow from '../components/dishRow';
 import BasketIcon from '../components/basketIcon';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectResturant, setResturant } from '../slices/resturantSlice';
+import { selectResturant, setResturant } from '../slices/restaurantSlice';
 import { emptyBasket } from '../slices/basketSlice';
 import * as Icon from "react-native-feather";
 import { themeColors } from '../theme';
